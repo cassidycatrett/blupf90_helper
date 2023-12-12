@@ -1,0 +1,55 @@
+#header: animal cont_group c_interval calving_date
+# parameter file for renumf90
+# be sure to type out column names here since the data file no longer has column labels
+DATAFILE
+cd_ci.dat # space delimited data file you created
+TRAITS
+3 4 # columns where traits can be found
+FIELDS_PASSED TO OUTPUT
+ # if a column does not need to be altered from the original ordered, label it here
+WEIGHT(S)
+ # if a column needs to be weighted, put it and the weight here
+RESIDUAL_VARIANCE # for a bivariate analysis, create a matrix here like this with 1 and 0.1 as initial values 
+1.0 0.1
+0.1 1.0
+EFFECT # effects and their information
+2 2 cross alpha # contemporary group, column 2, cross-classified, character values
+EFFECT
+1 1 cross alpha # animal. column 1, cross-classified, character values
+RANDOM
+animal # notes that animal, the effect directly above, is the random effect
+OPTIONAL
+pe # accounts for permanent environment effects
+FILE
+pedigree.dat # pedigree file 
+FILE_POS
+1 2 3 0 0 # denotes columns of pedigree file, 1 = animal, 2 = sire, 3 = dam
+SNP_FILE
+blupf90_genotypes # space delimited genotype file
+PED_DEPTH
+3  how many generations to go back into the pedigree
+#UPG_TYPE
+# 
+INBREEDING
+pedigree # inbreeding adjustment type
+#FIXED_REGRESSION
+# 
+#RANDOM_REGRESSION
+# 
+#RR_POSITION
+# 
+(CO)VARIANCES # for a bivariate analysis, create a matrix here like this with 0.1 and 0.01 as initial values 
+0.1 0.01
+0.01 0.1
+(CO)VARIANCES_PE # for a bivariate analysis, create a matrix here like this with 1 and 0.1 as initial values 
+0.1 0.01
+0.01 0.1
+#(CO)VARIANCES_MPE
+# 
+OPTION alpha_size 26 # denotes how many characters may be in the animal ID line
+#OPTION max_string_readline 800
+#OPTION max_field_readline 100
+
+OPTION remove-all-missing # removes missing observations
+OPTION cat 0 0 # allows for categorical trait analysis, input threhold value (binary = 2). 0 = continuous
+OPTION origID # allows for solutions to be calculated using the original animal ID

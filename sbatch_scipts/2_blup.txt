@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH -J gen_cd_blupf90+
+#SBATCH -A ACF-UTK0171
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=48
+#SBATCH --partition=condo-trowan1
+#SBATCH --time=30-24:00:00
+#SBATCH --error=job.e%J
+#SBATCH --output=job.o%J
+#SBATCH --qos=condo
+#SBATCH --mail-type=BEGIN,END,FAIL
+#SBATCH --mail-user=ccatrett@vols.utk.edu
+
+ulimit -s unlimited
+export OMP_NUM_THREADS=48
+export OMP_STACKSIZE=2048M
+blupf90+ renf90.par
+
+##NOTE: Be sure to specify condo/campus partition and adjust time and qos according to the specifications for those locations.

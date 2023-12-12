@@ -1,0 +1,54 @@
+---
+title: "subsetting_genotypes"
+format: gfm
+---
+
+## Subsetting Genotypes for Analysis
+
+The version of the BLUPF90 programs we've downloaded will only run with a maximum of 25,000 genotypes. To run with more, a research agreement has to be in place to access an expanded version. To subset down to 25,000 genotypes from the files we have in our lab, we can use some `awk` commands to filter out our genotype files so that we are only running our analyses with 25,000 genotypes from animals who are also phenotyped. The code to do this is below: 
+
+```
+awk '                          ##Starting awk program from here.
+FNR==NR{                       ##Checking condition which will be TRUE when file1 is being read.
+  second=$2                    ##Creating second which has $2 in it.
+  arr1[second]=$1              ##Creating arr1 with index of second and value of $1 here.
+  $1=$2=""                     ##Nullifying 1st and 2nd fields here.
+  sub(/^ +/,"")                ##Nullifying starting spaces with NULL here.
+  arr3[second]=$0              ##Creating arr3 with index of second and value of $0.
+  next                         ##next will skip all further statements from here.
+} 
+{
+    sub(/^>/,"",$2)            ##Substituting starting > in $2 with NULL.
+}
+($2 in arr1){                  ##Checking condition if $2 is in arr2 then do following.
+  print arr1[$2],$0,arr3[$2]   ##Printing arr1 with $2, current line, arr3 with $2.
+}
+' file1  file2 > new_file      ##mentioning Input_file names here and sending output to new file
+
+head -n 25000 new_file > final_file
+```
+
+
+An example of this that I ran looks like:
+
+```
+awk '
+FNR==NR{
+  first=$1
+  arr1[first]=$1
+  $1=$1=""
+  sub(/^ +/,"")
+  arr3[first]=$0
+  next
+} 
+{
+    sub(/^>/,"",$1)
+}
+($1 in arr1){
+  print arr1[$1],$0,arr3[$1]
+}
+' cd.dat 210723_ASA_overlap_filtered.blupf90 | cut -d " " -f 1,3 > filtered_genotypes
+
+head -n 25000 filtered_genotypes > blupf90_genotypes
+```
+

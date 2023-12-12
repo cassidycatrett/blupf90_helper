@@ -1,0 +1,62 @@
+# download_blupf90
+
+## Downloading the BLUPF90 Software to the Command Line/Terminal
+
+More info for working on the command line can be found here:
+https://swcarpentry.github.io/shell-novice/
+
+### Binary Directory
+
+You will need to create a binary directory in a logical place within
+your project/computer to download the software. I made a `bin` directory
+in my main project directory since that project is where I am using this
+software. To make the directory:
+
+`mkdir bin`
+
+`cd bin`
+
+I moved into this directory once I made it since that is where I want to
+download the software.
+
+### Downloading Software
+
+To access the repository of programs, vist this website:
+http://nce.ads.uga.edu/html/projects/programs/ Select the operating
+system (Windows, Mac, Linux) you’re using to access the correct version
+for your computer.
+
+Once in that directory, go to the `64bit` directory to access the most
+up to date software versions.
+
+To download the software, you’ll need to use the `wget` command to
+download each program. To get the link for each program, right click the
+program and choose to copy the link address. Once this is done, navigate
+back to your terminal and type this:
+
+`wget <pasted link>`
+
+So it would look something like this:
+
+`wget http://nce.ads.uga.edu/html/projects/programs/Linux/64bit/blupf90+`
+
+This will download the software to your binary directory. However, the
+program you’ve downloaded is not in an executable format. To change the
+format use this:
+
+`chmod 755 <program name>`
+
+So it would look like this:
+
+`chmod 75 blupf90+`
+
+The programs to download for our lab include renumf90, blupf90+,
+gibbsf90+, and postgibbsf90.
+
+### More Information
+
+This link (https://masuday.github.io/blupf90_tutorial/index.html) goes
+to an outdated version of the BLUPF90 manual. This version is a wiki
+directory that I have found is easier to navigate than the up to date
+version and contains more useful information about software download and
+installation.

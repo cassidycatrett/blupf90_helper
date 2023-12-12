@@ -1,0 +1,22 @@
+Important Options for BLUPF90 Programs
+All options can be found in the BLUPF90 manual: http://nce.ads.uga.edu/wiki/lib/exe/fetch.php?media=blupf90_all8.pdf
+
+RENUMF90 - these options will be transferred to renf90.par
+OPTION origID - keeps original animal IDs 
+OPTION cat x - denotes the the datafile has a categorical phenotype. Set x as whatever number of levels are in phenotype
+  Ex. binary trait = 2
+
+BLUPF90+
+OPTION sol se - stores solutions (EBVs) and standard errors
+OPTION method VCE - runs AI-ReML for variance components estimation
+OPTION use_yams - runs a modified FSPAK and improvves convergence with large datasets
+OPTION SNP_file - denotes the name of the snp file generated from renumf90. Should automatically generate if renumf90 was run with genotype file
+OPTION origID - keeps original animal IDs
+OPTION store_accuracy <effect> - calculates accuracy for the animal effect
+OPTION type <value> - calculates accuracy as either 1.0 (reliability/dairy cattle) or 0.5 (BIF accuracy/beef cattle)
+
+GIBBSF90+
+OPTION SNP_file - denotes the name of the snp file generated from renumf90. Should automatically generate if renumf90 was run with genotype file
+OPTION origID - keeps original animal IDs
+OPTION cat x - denotes the the datafile has a categorical phenotype. Set x as whatever number of levels are in phenotype
+  Ex. binary trait = 2

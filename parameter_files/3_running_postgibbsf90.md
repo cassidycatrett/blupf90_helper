@@ -1,0 +1,32 @@
+# running_postgibbsf90
+
+## Running POSTGIBBSF90
+
+Postgibbsf90 is a program to aid in interpreting results from GIBBSF90
+analyses. This program does not need to be run with an SBATCH script if
+running it on the UTK ISAAC server. To run this program, type to
+following in to directory in your terminal where all GIBBSF90+ output
+files are stored.
+
+`postgibbsf90`
+
+This command will pop `name of parameter file?`. Enter in the name of
+the gibbsf90+ paramter file you used for your gibbs analysis.
+
+The program will then ask for `burn in?`. Do not use the same burn in
+that you entered during the initial gibbs analysis as more samples will
+be discarded. If you are unsure about what the burn in should be, set it
+at 0.
+
+It will then ask `Give n to read every n-th sample?`. 1 will have the
+program read every sample. The program will also say above that
+statement something llike
+`Read         200  samples from round          50  to       10000`. If
+you want to set the `n` value at whatever the lowest number (for this
+example, it’s 50), you can use that as a way to ensure that an adequate
+number of samples are read.
+
+Once this command has been completed, postgibbsf90 will show results
+from a Monte Carlo Error by Time Series and Posterior Standard Deviation
+analyses. Find the row in the Posterior Standard Deviation table
+containing the information you want and record your data.

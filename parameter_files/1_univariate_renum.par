@@ -1,0 +1,53 @@
+# parameter file for renumf90
+# column names: animal contemporary group calving_date
+# be sure to type out column names here since the data file no longer has column labels
+DATAFILE
+cd.dat # space delimited file developed in R
+TRAITS
+3 # total number of columns in the data file
+FIELDS_PASSED TO OUTPUT
+# column number of any information to not be renumbered
+WEIGHT(S)
+ # weights for any columns
+RESIDUAL_VARIANCE
+1.0 # standard starting value, may need to be adjusted in the future based on new information
+EFFECT
+2 cross alpha # column number, cross-classified, alpha value, this is the contemporary group fixed effect
+EFFECT 
+1 cross alpha # column number, cross-classified, alpha value, this is the animal random effect
+RANDOM
+animal # specifying that the random effect is the animal 
+OPTIONAL
+pe # adding in a permanent environment effect. It does not have to be included for every trait. Other options include mpe (maternal permanent environment) or mat (maternal)
+FILE
+pedigree.dat # space delimited file generated in R
+FILE_POS
+1 2 3 0 0 # defining columns in the pedigree file, 1 = animal, 2 = sire, 3 = dam. 0 is stated as a max of 5 columns could be included but only 3 are. Other columns could be 4 = alternate dam, # 5 = year
+SNP_FILE
+blupf90_genotypes # space delimited genotype file with column 1 being animal ID and column 2 being the binary genotype
+PED_DEPTH
+3 # how many generations back in the pedigree to go for analysis
+#UPG_TYPE
+#
+INBREEDING
+pedigree # calculate inbreeding based on the pedigree information
+#FIXED_REGRESSION
+# 
+#RANDOM_REGRESSION
+# 
+#RR_POSITION
+# 
+(CO)VARIANCES
+1.0 # standard starting value, may need to be adjusted upon further analysis
+(CO)VARIANCES_PE
+1.0 # standard starting value, may need to be adjusted upon further analysis. This only has to be included if pe is stated.
+#(CO)VARIANCES_MPE
+# 
+OPTION alpha_size 40 # total characters per line
+#OPTION max_string_readline 800
+#OPTION max_field_readline 100
+
+OPTION remove_all_missing # removing missing observations
+OPTION origID # including original animal ID information in downstream analysis
+
+
